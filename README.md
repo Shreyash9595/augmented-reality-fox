@@ -1,48 +1,25 @@
-# Augmented Reality
+# Augmented Reality Engine
 
-"ar.py" is a python program that uses OpenCV to render .obj files on Aruco markers. For an in-depth explanation, check out my [blog tutorial](https://medium.com/swlh/augmented-reality-diy-3fc138274561).
+A Python-based Augmented Reality engine that detects ArUco markers and renders 3D objects onto a live webcam feed using OpenCV.
 
-<!-- ![Demo](https://user-images.githubusercontent.com/31953115/121981314-0b712c00-cdab-11eb-98d4-decf737824ea.gif) -->
-
-<p align = "center">
-  <img src="https://user-images.githubusercontent.com/31953115/121981314-0b712c00-cdab-11eb-98d4-decf737824ea.gif" alt="animated" />
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/31953115/121981314-0b712c00-cdab-11eb-98d4-decf737824ea.gif" alt="AR Demo" />
 </p>
 
+## Overview
+This project implements an AR pipeline from scratch without relying on the built-in `cv2.aruco` detection module. It demonstrates the core algorithms of Computer Vision:
+1.  **Marker Detection:** Uses adaptive thresholding and bit-signature matching to identify custom ArUco markers.
+2.  **Pose Estimation:** Calculates the Homography and Projection matrices to map 3D coordinates to the 2D camera plane.
+3.  **Rendering:** Parses `.obj` files (3D models) and renders them frame-by-frame on the detected marker.
 
 ## Dependencies
 
-It uses OpenCV(3.4.2) and Numpy(1.17.2). The python version is 3.7.5
+* **Python 3.10+** (Tested on Python 3.13)
+* **OpenCV** (opencv-contrib-python)
+* **NumPy**
 
-Before installing the dependencies, it is recommended to create a virual environment to prevent confilcts with the existing environment. Using conda, 
-
-```bash
-conda create -n augmented_reality python=3.7.5
-conda activate augmented_reality
-``` 
-
-To install the dependencies - 
-```bash
-pip install -r requirements.txt
-```
-
-## Usage
-For the main program - 
+### Installation
+You can install the required libraries directly using pip:
 
 ```bash
-python ar.py
-```
-It is recommended to print the aruco marker(data/m1.pdf) on a piece of paper. Alternatively, the program should work (but inferiorly) with the marker open on your phone. The white margin around the marker boundary is required for boundary detection. Keeping the marker flat (for example, by sticking it to a piece of cardboard) further helps in detecting the marker. 
-
-For a faster version which uses the Lucas-Kanade method for tracking - 
-```bash
-python ar_with_tracking.py
-```
-
-(Optional) For camera calibration alter the path mentioned in the file and run - 
-
-```bash
-python camera_calib.py 
-```
-
-Refer to the blog for all the details about camera calibration. 
-
+pip install opencv-contrib-python numpy
