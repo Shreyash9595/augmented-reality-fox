@@ -23,3 +23,40 @@ You can install the required libraries directly using pip:
 
 ```bash
 pip install opencv-contrib-python numpy
+```
+
+How to Run
+1. Setup the Marker
+The project uses the marker located in data/m1.png.
+
+Print this image on white paper for the best results.
+
+Tip: Leaving a white margin around the black border helps the detection algorithm.
+
+2. Run the Main Engine
+To start the standard AR application:
+```bash
+python ar.py
+```
+
+3. Run with Tracking (Smoother)
+To run the version that uses Optical Flow (Lucas-Kanade method) for more stable tracking:
+```bash
+python ar_with_tracking.py
+```
+4. Camera Calibration (Optional)
+If the 3D object looks distorted, you can recalibrate your specific webcam lens:
+```bash
+python camera_calib.py
+```
+
+Project Structure
+ar.py: Main entry point. Handles webcam feed, detection, and rendering.
+
+aruco_module.py: Custom implementation of the ArUco marker detection algorithm.
+
+object_module.py: 3D renderer that parses and draws .obj models.
+
+utils.py: Math utilities for calculating the rotation and translation vectors.
+
+data/: Contains the reference marker and 3D assets.'
